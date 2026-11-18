@@ -1,4 +1,4 @@
-# Dictionnaire anglais-français. Une ligne par mot : anglais:français
+# Dictionnaire anglais-français. Format : anglais:français (basic) ou niveau|anglais:français
 house:maison
 cat:chat
 dog:chien
@@ -128,3 +128,67 @@ spoon:cuillère
 hat:chapeau
 shoe:chaussure
 coat:manteau
+
+# Advanced vocabulary
+advanced|to improve:améliorer
+advanced|to achieve:accomplir
+advanced|to assess:évaluer
+advanced|to enhance:renforcer
+advanced|to overcome:surmonter
+advanced|to acknowledge:reconnaître
+advanced|to anticipate:anticiper
+advanced|to negotiate:négocier
+advanced|to emphasize:souligner
+advanced|to implement:mettre en œuvre
+advanced|to foster:favoriser
+advanced|to require:nécessiter
+advanced|to distinguish:distinguer
+advanced|to maintain:maintenir
+advanced|to establish:établir
+advanced|to pursue:poursuivre
+advanced|to allocate:allouer
+advanced|to mitigate:atténuer
+advanced|to scrutinize:examiner minutieusement
+advanced|to streamline:rationaliser
+advanced|outcome:résultat obtenu
+advanced|drawback:inconvénient
+advanced|insight:compréhension approfondie
+advanced|evidence:éléments de preuve
+advanced|challenge:défi
+advanced|reliable:fiable
+advanced|significant:important
+advanced|sustainable:durable
+advanced|widespread:répandu
+advanced|accurate:précis
+
+# Fluent vocabulary
+fluent|to refine:peaufiner
+fluent|to pinpoint:cerner précisément
+fluent|to delve into:approfondir un sujet
+fluent|to brush up on:se remettre à niveau en
+fluent|to bring about:provoquer un changement
+fluent|to rule out:écarter une possibilité
+fluent|to come across:tomber par hasard sur
+fluent|to put up with:supporter une situation
+fluent|to fall short:ne pas être à la hauteur
+fluent|to iron out:aplanir des difficultés
+fluent|to shed light on:faire la lumière sur
+fluent|to get around to:finir par trouver le temps de
+fluent|to take for granted:tenir pour acquis
+fluent|to make up for:compenser un manque
+fluent|to back down:faire marche arrière
+fluent|to weigh up:peser le pour et le contre
+fluent|to phase out:supprimer progressivement
+fluent|to boil down to:se résumer à
+fluent|to stand out:se démarquer
+fluent|to keep abreast of:se tenir au courant de
+fluent|a trade-off:un compromis entre deux objectifs
+fluent|a loophole:une faille réglementaire
+fluent|a setback:un revers
+fluent|a watershed moment:un tournant décisif
+fluent|a silver lining:un aspect positif inattendu
+fluent|a stumbling block:un obstacle majeur
+fluent|a rule of thumb:une règle empirique
+fluent|a far cry from:bien loin de
+fluent|to be at odds with:être en contradiction avec
+fluent|to go the extra mile:faire plus que nécessaire

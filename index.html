@@ -41,16 +41,18 @@ select{width:100%;background:var(--surf);border:2px solid var(--line);border-rad
 <body>
 <main id="app"></main>
 <script>
-// Dictionary files (one line per word, "english:translation")
+// Dictionary files: "english:translation" (basic) or "level|english:translation"
 const FILES={fr:'dictionnaire-en-fr.txt',it:'dictionnaire-en-it.txt'};
 const NAMES={fr:'French',it:'Italian'};
 const LEN={short:3,medium:7,long:17};
+const LEVELS={basic:"Basic · A1–B1",advanced:"Advanced · B2–C1",fluent:"Fluent · C1–C2"};
 const $=document.getElementById('app');
 const rnd=n=>Math.floor(Math.random()*n);
 const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
-let best={},lang='fr';
-try{best=JSON.parse(localStorage.getItem('best')||'{}');lang=localStorage.getItem('lang')||'fr'}catch(e){}
+let best={},lang='fr',level='basic';
+try{best=JSON.parse(localStorage.getItem('best')||'{}');lang=localStorage.getItem('lang')||'fr';level=localStorage.getItem('level')||'basic'}catch(e){}
 if(!FILES[lang])lang='fr';
+if(!LEVELS[level])level='basic';
 function saveBest(k,v){if(!(best[k]>=v)){best[k]=v;try{localStorage.setItem('best',JSON.stringify(best))}catch(e){}}}
 
 const cache={};
@@ -60,7 +62,8 @@ async function loadDict(l){
   if(!r.ok)throw new Error(r.status);
   const t=await r.text();
   const d=t.split('\n').map(s=>s.trim()).filter(s=>s&&!s.startsWith('#')&&s.includes(':'))
-    .map(s=>{const i=s.indexOf(':');return{en:s.slice(0,i).trim(),src:s.slice(i+1).trim()}});
+    .map(s=>{const i=s.indexOf(':');let en=s.slice(0,i).trim();const src=s.slice(i+1).trim();let level='basic';const sep=en.indexOf('|');if(sep!==-1){level=en.slice(0,sep).trim();en=en.slice(sep+1).trim()}return{en,src,level}})
+    .filter(w=>LEVELS[w.level]&&w.en&&w.src);
   if(d.length<4)throw new Error('empty');
   return cache[l]=d;
 }
@@ -74,15 +77,16 @@ function home(){
 function pick(g){
   const words=g==='words';
   $.innerHTML=`<button class="back" id="b">‹ Back</button><h1 style="margin-top:4px">${words?'English training':'Mental calculation'}</h1>
-  ${words?`<p>Source language</p><select id="l">${Object.keys(FILES).map(k=>`<option value="${k}"${k===lang?' selected':''}>${NAMES[k]} → English</option>`).join('')}</select>`:''}
+  ${words?`<p>Source language</p><select id="l">${Object.keys(FILES).map(k=>`<option value="${k}"${k===lang?' selected':''}>${NAMES[k]} → English</option>`).join('')}</select><p>Vocabulary level</p><select id="level">${Object.entries(LEVELS).map(([k,v])=>`<option value="${k}"${k===level?' selected':''}>${v}</option>`).join('')}</select>`:''}
   <p>Round length</p>
   <div class="len">${Object.entries(LEN).map(([k,n])=>`<button data-k="${k}">${k[0].toUpperCase()+k.slice(1)}<span>${n} questions</span></button>`).join('')}</div>
   <p id="rec"></p>`;
-  const rec=()=>{const key=words?'words'+lang:'calc';
+  const rec=()=>{const key=words?'words'+lang+level:'calc';
     document.getElementById('rec').textContent=Object.keys(LEN).map(k=>best[key+k]!=null?`Best ${k}: ${best[key+k]}/${LEN[k]}`:'').filter(Boolean).join(' · ')};
   rec();
   document.getElementById('b').onclick=home;
-  if(words)document.getElementById('l').onchange=e=>{lang=e.target.value;try{localStorage.setItem('lang',lang)}catch(x){}rec()};
+  if(words){document.getElementById('l').onchange=e=>{lang=e.target.value;try{localStorage.setItem('lang',lang)}catch(x){}rec()};
+  document.getElementById('level').onchange=e=>{level=e.target.value;try{localStorage.setItem('level',level)}catch(x){}rec()}};
   $.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>play(g,b.dataset.k));
 }
 function mkCalc(){
@@ -101,17 +105,17 @@ function mkWord(D){
   return{q:w.src,opts:shuf([w.en,...opts]),ans:w.en};
 }
 async function play(g,k){
-  const N=LEN[k];let D=null;
+  const N=LEN[k];let D=null;const gameLang=lang,gameLevel=level;
   if(g==='words'){
     $.innerHTML='<p style="margin-top:40px;text-align:center">Loading…</p>';
-    try{D=await loadDict(lang)}catch(e){
-      $.innerHTML=`<p style="margin-top:40px">Could not load ${FILES[lang]}. Check the file is in the same folder as index.html.</p><button class="cta alt" id="h">Back</button>`;
+    try{D=(await loadDict(lang)).filter(w=>w.level===level);if(D.length<4)throw new Error('Not enough words for this level')}catch(e){
+      $.innerHTML=`<p style="margin-top:40px">Could not load vocabulary for ${LEVELS[level]} from ${FILES[lang]}. Check the dictionary file and its level entries.</p><button class="cta alt" id="h">Back</button>`;
       document.getElementById('h').onclick=()=>pick(g);return;
     }
   }
   let i=0,sc=0;
   const next=()=>{
-    if(i>=N)return end(g,k,sc,N);
+    if(i>=N)return end(g,k,sc,N,gameLang,gameLevel);
     const q=g==='calc'?mkCalc():mkWord(D);let lock=false;
     $.innerHTML=`<div class="top"><button class="back" id="x">‹ Quit</button><span>${i+1} / ${N}</span></div>
     <div class="bar"><i style="width:${i/N*100}%"></i></div>
@@ -129,12 +133,12 @@ async function play(g,k){
   };
   next();
 }
-function end(g,k,sc,N){
-  saveBest((g==='words'?'words'+lang:'calc')+k,sc);
+function end(g,k,sc,N,gameLang,gameLevel){
+  saveBest((g==='words'?'words'+gameLang+gameLevel:'calc')+k,sc);
   const m=sc===N?'Perfect!':sc>=N*.7?'Great job':sc>=N*.4?'Not bad':'Try again?';
   $.innerHTML=`<div class="score">${sc}/${N}</div><p class="res">${m}</p><div style="flex:1"></div>
   <button class="cta" id="r">Play again</button><button class="cta alt" id="h">Home</button>`;
-  document.getElementById('r').onclick=()=>play(g,k);
+  document.getElementById('r').onclick=()=>{lang=gameLang;level=gameLevel;play(g,k)};
   document.getElementById('h').onclick=home;
 }
 home();

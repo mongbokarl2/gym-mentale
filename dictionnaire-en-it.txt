@@ -1,4 +1,4 @@
-# Dizionario inglese-italiano. Una riga per parola : inglese:italiano
+# Dizionario inglese-italiano. Formato: inglese:italiano (basic) oppure livello|inglese:italiano
 house:casa
 cat:gatto
 dog:cane
@@ -128,3 +128,67 @@ spoon:cucchiaio
 hat:cappello
 shoe:scarpa
 coat:cappotto
+
+# Advanced vocabulary
+advanced|to improve:migliorare
+advanced|to achieve:raggiungere un obiettivo
+advanced|to assess:valutare
+advanced|to enhance:potenziare
+advanced|to overcome:superare
+advanced|to acknowledge:riconoscere
+advanced|to anticipate:prevedere in anticipo
+advanced|to negotiate:negoziare
+advanced|to emphasize:sottolineare
+advanced|to implement:attuare
+advanced|to foster:favorire
+advanced|to require:richiedere
+advanced|to distinguish:distinguere
+advanced|to maintain:mantenere
+advanced|to establish:stabilire
+advanced|to pursue:perseguire
+advanced|to allocate:assegnare risorse
+advanced|to mitigate:attenuare
+advanced|to scrutinize:esaminare attentamente
+advanced|to streamline:snellire un processo
+advanced|outcome:risultato ottenuto
+advanced|drawback:svantaggio
+advanced|insight:comprensione approfondita
+advanced|evidence:elementi di prova
+advanced|challenge:sfida
+advanced|reliable:affidabile
+advanced|significant:rilevante
+advanced|sustainable:sostenibile
+advanced|widespread:diffuso
+advanced|accurate:preciso
+
+# Fluent vocabulary
+fluent|to refine:perfezionare nei dettagli
+fluent|to pinpoint:individuare con precisione
+fluent|to delve into:approfondire un argomento
+fluent|to brush up on:rinfrescare le proprie conoscenze di
+fluent|to bring about:provocare un cambiamento
+fluent|to rule out:escludere una possibilità
+fluent|to come across:imbattersi per caso in
+fluent|to put up with:sopportare una situazione
+fluent|to fall short:non essere all’altezza
+fluent|to iron out:appianare le difficoltà
+fluent|to shed light on:fare luce su
+fluent|to get around to:trovare finalmente il tempo di
+fluent|to take for granted:dare per scontato
+fluent|to make up for:compensare una mancanza
+fluent|to back down:fare marcia indietro
+fluent|to weigh up:soppesare pro e contro
+fluent|to phase out:eliminare gradualmente
+fluent|to boil down to:ridursi in sostanza a
+fluent|to stand out:distinguersi dagli altri
+fluent|to keep abreast of:tenersi al corrente di
+fluent|a trade-off:un compromesso tra obiettivi
+fluent|a loophole:una scappatoia normativa
+fluent|a setback:una battuta d’arresto
+fluent|a watershed moment:un momento di svolta decisivo
+fluent|a silver lining:un risvolto positivo inatteso
+fluent|a stumbling block:un ostacolo importante
+fluent|a rule of thumb:una regola empirica
+fluent|a far cry from:ben lontano da
+fluent|to be at odds with:essere in contrasto con
+fluent|to go the extra mile:fare più del necessario
