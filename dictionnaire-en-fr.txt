@@ -1,0 +1,130 @@
+# Dictionnaire anglais-français. Une ligne par mot : anglais:français
+house:maison
+cat:chat
+dog:chien
+car:voiture
+book:livre
+water:eau
+bread:pain
+apple:pomme
+window:fenêtre
+door:porte
+table:table
+chair:chaise
+school:école
+friend:ami
+family:famille
+mother:mère
+father:père
+brother:frère
+sister:sœur
+child:enfant
+man:homme
+woman:femme
+day:jour
+night:nuit
+sun:soleil
+moon:lune
+star:étoile
+sky:ciel
+sea:mer
+mountain:montagne
+river:rivière
+tree:arbre
+flower:fleur
+forest:forêt
+rain:pluie
+snow:neige
+wind:vent
+fire:feu
+earth:terre
+city:ville
+street:rue
+road:route
+bridge:pont
+station:gare
+plane:avion
+train:train
+bike:vélo
+boat:bateau
+trip:voyage
+work:travail
+money:argent
+time:temps
+hour:heure
+week:semaine
+month:mois
+year:année
+morning:matin
+evening:soir
+yesterday:hier
+tomorrow:demain
+today:aujourd'hui
+red:rouge
+blue:bleu
+green:vert
+yellow:jaune
+black:noir
+white:blanc
+tall:grand
+small:petit
+fast:rapide
+slow:lent
+hot:chaud
+cold:froid
+new:nouveau
+old:vieux
+beautiful:beau
+happy:heureux
+sad:triste
+tired:fatigué
+easy:facile
+hard:difficile
+strong:fort
+weak:faible
+to eat:manger
+to drink:boire
+to sleep:dormir
+to run:courir
+to walk:marcher
+to speak:parler
+to listen:écouter
+to watch:regarder
+to read:lire
+to write:écrire
+to sing:chanter
+to dance:danser
+to play:jouer
+to buy:acheter
+to sell:vendre
+to open:ouvrir
+to close:fermer
+to love:aimer
+to help:aider
+to search:chercher
+to find:trouver
+to think:penser
+to know:savoir
+to want:vouloir
+to be able:pouvoir
+to come:venir
+to leave:partir
+kitchen:cuisine
+bedroom:chambre
+garden:jardin
+cheese:fromage
+fish:poisson
+bird:oiseau
+horse:cheval
+milk:lait
+key:clé
+gift:cadeau
+dream:rêve
+mouse:souris
+umbrella:parapluie
+knife:couteau
+fork:fourchette
+spoon:cuillère
+hat:chapeau
+shoe:chaussure
+coat:manteau

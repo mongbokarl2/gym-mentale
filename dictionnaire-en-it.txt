@@ -1,0 +1,130 @@
+# Dizionario inglese-italiano. Una riga per parola : inglese:italiano
+house:casa
+cat:gatto
+dog:cane
+car:macchina
+book:libro
+water:acqua
+bread:pane
+apple:mela
+window:finestra
+door:porta
+table:tavolo
+chair:sedia
+school:scuola
+friend:amico
+family:famiglia
+mother:madre
+father:padre
+brother:fratello
+sister:sorella
+child:bambino
+man:uomo
+woman:donna
+day:giorno
+night:notte
+sun:sole
+moon:luna
+star:stella
+sky:cielo
+sea:mare
+mountain:montagna
+river:fiume
+tree:albero
+flower:fiore
+forest:foresta
+rain:pioggia
+snow:neve
+wind:vento
+fire:fuoco
+earth:terra
+city:città
+street:via
+road:strada
+bridge:ponte
+station:stazione
+plane:aereo
+train:treno
+bike:bicicletta
+boat:barca
+trip:viaggio
+work:lavoro
+money:soldi
+time:tempo
+hour:ora
+week:settimana
+month:mese
+year:anno
+morning:mattina
+evening:sera
+yesterday:ieri
+tomorrow:domani
+today:oggi
+red:rosso
+blue:blu
+green:verde
+yellow:giallo
+black:nero
+white:bianco
+tall:alto
+small:piccolo
+fast:veloce
+slow:lento
+hot:caldo
+cold:freddo
+new:nuovo
+old:vecchio
+beautiful:bello
+happy:felice
+sad:triste
+tired:stanco
+easy:facile
+hard:difficile
+strong:forte
+weak:debole
+to eat:mangiare
+to drink:bere
+to sleep:dormire
+to run:correre
+to walk:camminare
+to speak:parlare
+to listen:ascoltare
+to watch:guardare
+to read:leggere
+to write:scrivere
+to sing:cantare
+to dance:ballare
+to play:giocare
+to buy:comprare
+to sell:vendere
+to open:aprire
+to close:chiudere
+to love:amare
+to help:aiutare
+to search:cercare
+to find:trovare
+to think:pensare
+to know:sapere
+to want:volere
+to be able:potere
+to come:venire
+to leave:partire
+kitchen:cucina
+bedroom:camera
+garden:giardino
+cheese:formaggio
+fish:pesce
+bird:uccello
+horse:cavallo
+milk:latte
+key:chiave
+gift:regalo
+dream:sogno
+mouse:topo
+umbrella:ombrello
+knife:coltello
+fork:forchetta
+spoon:cucchiaio
+hat:cappello
+shoe:scarpa
+coat:cappotto
