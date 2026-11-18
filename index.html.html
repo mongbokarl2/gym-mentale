@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gym mentale</title>
+<style>
+:root{--bg:#EEF2F7;--surf:#fff;--ink:#14213D;--mute:#5B6B86;--acc:#2A6FDB;--ok:#1E9E6A;--ko:#D64550;--line:#D5DDE9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1726;--surf:#19243A;--ink:#EAF0FB;--mute:#9AABC7;--acc:#6FA2F5;--ok:#3CC48C;--ko:#F0707A;--line:#2B3A57;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1726;--surf:#19243A;--ink:#EAF0FB;--mute:#9AABC7;--acc:#6FA2F5;--ok:#3CC48C;--ko:#F0707A;--line:#2B3A57;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",ui-rounded,system-ui,-apple-system,sans-serif}
+main{max-width:480px;margin:0 auto;padding:24px 20px 40px;display:flex;flex-direction:column;gap:14px;min-height:90vh}
+h1{font-size:2.4rem;line-height:1.05;margin:24px 0 4px;font-weight:800;letter-spacing:-.02em}
+p{margin:0;color:var(--mute)}
+button{font:inherit;color:inherit;cursor:pointer}
+.big{background:var(--surf);border:2px solid var(--line);border-radius:20px;padding:22px;text-align:left;font-size:1.4rem;font-weight:700}
+.big small{display:block;font-weight:400;font-size:.95rem;color:var(--mute);margin-top:4px}
+.big:active,.opt:active{transform:scale(.98)}
+.len{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.len button{background:var(--surf);border:2px solid var(--line);border-radius:14px;padding:16px 6px;font-weight:700;font-size:1.05rem}
+.len button span{display:block;font-weight:400;font-size:.85rem;color:var(--mute)}
+.top{display:flex;justify-content:space-between;align-items:center;color:var(--mute)}
+.back{background:none;border:0;color:var(--acc);font-weight:700;font-size:1rem;padding:6px 0}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--acc);transition:width .3s}
+.q{flex:1;display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:800;text-align:center;padding:24px 0;letter-spacing:-.01em}
+.opts{display:grid;gap:12px}
+.opt{background:var(--surf);border:2px solid var(--line);border-radius:16px;padding:20px;font-size:1.5rem;font-weight:700}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--surf))}
+.opt.ko{border-color:var(--ko);background:color-mix(in srgb,var(--ko) 18%,var(--surf))}
+.score{font-size:4rem;font-weight:800;text-align:center;margin:30px 0 0}
+.res{text-align:center}
+.cta{background:var(--acc);color:#fff;border:0;border-radius:16px;padding:18px;font-weight:700;font-size:1.1rem}
+.cta.alt{background:var(--surf);color:var(--ink);border:2px solid var(--line)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+const WORDS=`maison:house,chat:cat,chien:dog,voiture:car,livre:book,eau:water,pain:bread,pomme:apple,fenêtre:window,porte:door,table:table,chaise:chair,école:school,ami:friend,famille:family,mère:mother,père:father,frère:brother,sœur:sister,enfant:child,homme:man,femme:woman,jour:day,nuit:night,soleil:sun,lune:moon,étoile:star,ciel:sky,mer:sea,montagne:mountain,rivière:river,arbre:tree,fleur:flower,forêt:forest,pluie:rain,neige:snow,vent:wind,feu:fire,terre:earth,ville:city,rue:street,pont:bridge,gare:station,avion:plane,train:train,vélo:bike,bateau:boat,route:road,voyage:trip,travail:work,argent:money,temps:time,heure:hour,semaine:week,mois:month,année:year,matin:morning,soir:evening,hier:yesterday,demain:tomorrow,aujourd'hui:today,rouge:red,bleu:blue,vert:green,jaune:yellow,noir:black,blanc:white,grand:tall,petit:small,rapide:fast,lent:slow,chaud:hot,froid:cold,nouveau:new,vieux:old,beau:beautiful,heureux:happy,triste:sad,fatigué:tired,facile:easy,difficile:hard,fort:strong,faible:weak,manger:to eat,boire:to drink,dormir:to sleep,courir:to run,marcher:to walk,parler:to speak,écouter:to listen,regarder:to watch,lire:to read,écrire:to write,chanter:to sing,danser:to dance,jouer:to play,acheter:to buy,vendre:to sell,ouvrir:to open,fermer:to close,aimer:to love,aider:to help,chercher:to search,trouver:to find,penser:to think,savoir:to know,vouloir:to want,pouvoir:to be able,venir:to come,partir:to leave,cuisine:kitchen,chambre:bedroom,jardin:garden,fromage:cheese,poisson:fish,oiseau:bird,cheval:horse,lait:milk,clé:key,cadeau:gift,rêve:dream,souris:mouse,parapluie:umbrella,couteau:knife,fourchette:fork,cuillère:spoon,chapeau:hat,chaussure:shoe,manteau:coat`;
+const DICT=WORDS.split(',').map(s=>{const[i,j]=s.split(':');return{fr:i,en:j}});
+const LEN={court:3,moyen:7,long:17};
+const $=document.getElementById('app');
+const rnd=n=>Math.floor(Math.random()*n);
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+let best={};try{best=JSON.parse(localStorage.getItem('best')||'{}')}catch(e){}
+function saveBest(k,v){if(!(best[k]>=v)){best[k]=v;try{localStorage.setItem('best',JSON.stringify(best))}catch(e){}}}
+
+function home(){
+  $.innerHTML=`<h1>Gym mentale</h1><p>Choisissez un jeu.</p>
+  <button class="big" data-g="calc">Calcul mental<small>Trouvez le bon résultat</small></button>
+  <button class="big" data-g="words">Match words<small>Français → anglais</small></button>`;
+  $.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>pick(b.dataset.g));
+}
+function pick(g){
+  const t=g==='calc'?'Calcul mental':'Match words';
+  $.innerHTML=`<button class="back" id="b">‹ Retour</button><h1 style="margin-top:4px">${t}</h1><p>Longueur de la manche</p>
+  <div class="len">${Object.entries(LEN).map(([k,n])=>`<button data-k="${k}">${k[0].toUpperCase()+k.slice(1)}<span>${n} questions</span></button>`).join('')}</div>
+  <p style="margin-top:8px">${Object.keys(LEN).map(k=>best[g+k]!=null?`Record ${k} : ${best[g+k]}/${LEN[k]}`:'').filter(Boolean).join(' · ')}</p>`;
+  document.getElementById('b').onclick=home;
+  $.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>play(g,b.dataset.k));
+}
+function mkCalc(){
+  const t=rnd(3);let a,b,txt,r;
+  if(t===0){a=10+rnd(90);b=10+rnd(90);r=a+b;txt=`${a} + ${b}`}
+  else if(t===1){a=30+rnd(70);b=10+rnd(a-10);r=a-b;txt=`${a} − ${b}`}
+  else{a=2+rnd(11);b=2+rnd(11);r=a*b;txt=`${a} × ${b}`}
+  const s=new Set([r]);
+  while(s.size<3){const d=[-10,-2,-1,1,2,10,a%10||3][rnd(7)];const v=r+d;if(v>0)s.add(v)}
+  return{q:txt+' = ?',opts:shuf([...s]).map(String),ans:String(r)};
+}
+function mkWord(){
+  const w=DICT[rnd(DICT.length)];const s=new Set([w.en]);
+  const same=w.en.startsWith('to ');
+  while(s.size<3){const x=DICT[rnd(DICT.length)].en;if(x.startsWith('to ')===same)s.add(x)}
+  return{q:w.fr,opts:shuf([...s]),ans:w.en};
+}
+function play(g,k){
+  const N=LEN[k];let i=0,sc=0;
+  const next=()=>{
+    if(i>=N)return end(g,k,sc,N);
+    const q=g==='calc'?mkCalc():mkWord();let lock=false;
+    $.innerHTML=`<div class="top"><button class="back" id="x">‹ Quitter</button><span>${i+1} / ${N}</span></div>
+    <div class="bar"><i style="width:${i/N*100}%"></i></div>
+    <div class="q">${q.q}</div>
+    <div class="opts">${q.opts.map(o=>`<button class="opt">${o}</button>`).join('')}</div>`;
+    document.getElementById('x').onclick=()=>pick(g);
+    $.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(lock)return;lock=true;
+      const good=b.textContent===q.ans;
+      if(good)sc++;
+      b.classList.add(good?'ok':'ko');
+      if(!good)$.querySelectorAll('.opt').forEach(x=>{if(x.textContent===q.ans)x.classList.add('ok')});
+      i++;setTimeout(next,good?500:1100);
+    });
+  };
+  next();
+}
+function end(g,k,sc,N){
+  saveBest(g+k,sc);
+  const m=sc===N?'Sans faute !':sc>=N*.7?'Très bien':sc>=N*.4?'Pas mal':'On réessaie ?';
+  $.innerHTML=`<div class="score">${sc}/${N}</div><p class="res">${m}</p><div style="flex:1"></div>
+  <button class="cta" id="r">Rejouer</button><button class="cta alt" id="h">Accueil</button>`;
+  document.getElementById('r').onclick=()=>play(g,k);
+  document.getElementById('h').onclick=home;
+}
+home();
+</script>
+</body>
+</html>
